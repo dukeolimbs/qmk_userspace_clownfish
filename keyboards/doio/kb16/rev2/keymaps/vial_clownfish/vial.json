@@ -16,6 +16,7 @@
     {"name": "VENV",    "title": "source .venv/bin/activate",        "shortName": "VENV"},
     {"name": "CLANGD",  "title": "qmk compile --compiledb -kb  -km", "shortName": "CLANGD"},
     {"name": "DBL_0",   "title": "00",                               "shortName": "DBL_0"},
+    {"name": "KEYLOCK", "title": "Key Lock - lock next key pressed", "shortName": "KLCK"},
     {"name": "SMPLGT",  "title": "simple light mode cycle",          "shortName": "LGHT"},
     {"name": "RM_PL",   "title": "rgb matrix mode plain",            "shortName":"RM_P"},
     {"name": "RM_AM",   "title": "rgb matrix mode alphas mods",      "shortName": "RM_AM"},

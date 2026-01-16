@@ -41,20 +41,20 @@ enum my_layers {
     GAME_FN,
     LIGHT
 };
-const char *layers[] = {
-    "NUMPAD",
-    "WINDOWS",
-    "WIN_FN",
-    "MACOS",
-    "MAC_FN",
-    "MEDIA",
-    "BROWSER",
-    "DISCORD",
-    "MOUSE",
-    "GAME",
-    "GAME_FN",
-    "LIGHTING"
-};
+// const char *layers[] = {
+//     "NUMPAD",
+//     "WINDOWS",
+//     "WIN_FN",
+//     "MACOS",
+//     "MAC_FN",
+//     "MEDIA",
+//     "BROWSER",
+//     "DISCORD",
+//     "MOUSE",
+//     "GAME",
+//     "GAME_FN",
+//     "LIGHTING"
+// };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -70,10 +70,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
        └────┴────┴────┴────┘           └────┘
 */
     [NUM] = LAYOUT(
-                KC_P7,    KC_P8,    KC_P9,    KC_NUM,   RM_TOGG,
-                KC_P4,    KC_P5,    KC_P6,    KC_PMNS,  MS_BTN3,
-                KC_P1,    KC_P2,    KC_P3,    KC_PPLS,  KC_MUTE,
-                KC_P0,    DBL_0,    KC_PDOT,  KC_ENT
+                MO(1),     KC_P1,    KC_P4,     KC_7,   RM_TOGG,
+                KC_P0,     KC_P2,    KC_P5,     KC_8,  MS_BTN3,
+                KC_PDOT,   KC_P3,    KC_P6,     KC_9,  KC_MUTE,
+                KC_ENT,    C(S(KC_PGUP)),    KC_KP_PLUS,   KC_KP_MINUS
             ),
 
 /*  WIN
@@ -84,14 +84,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
        ├────┼────┼────┼────┤
        │Shft│ ←  │ ↓  │ →  │          WHL↑|WHL↓
        ├────┼────┼────┼────┤           ┌────┐
-       │Ctrl│Win │Alt │ Fn │           │MS 3│
+       │Ctrl│Win │Lock│ Fn │           │MS 3│
        └────┴────┴────┴────┘           └────┘
 */
     [WIN] = LAYOUT(
-                KC_ESC,  C(KC_C), C(KC_V), KC_BSPC, RM_TOGG,
-                ALT_TAB, KC_TAB,  KC_UP,   KC_ENT,  KC_MUTE,
-                KC_LSFT, KC_LEFT, KC_DOWN, KC_RGHT, MS_BTN3,
-                KC_LCTL, KC_LGUI, KC_LALT, MO(WIN_FN)
+                KC_ESC,  C(KC_C), C(KC_V),        QK_BOOT, RM_TOGG,
+                ALT_TAB, KC_TAB,  KC_UP,          KC_MS_L,  KC_MUTE,
+                KC_LSFT, KC_LEFT, KC_DOWN,        KC_MS_R, MS_BTN3,
+                KC_LCTL, QK_LOCK, KC_KP_ASTERISK, KC_KP_SLASH
             ),
 
 /*  WIN_FN
@@ -120,14 +120,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
        ├────┼────┼────┼────┤
        │Shft│ ←  │ ↓  │ →  │          WHL↑|WHL↓
        ├────┼────┼────┼────┤           ┌────┐
-       │Ctrl│Win │Alt │ Fn │           │MS 3│
+       │Ctrl│Opt │Lock│ Fn │           │MS 3│
        └────┴────┴────┴────┘           └────┘
 */
     [MAC] = LAYOUT(
                 KC_ESC,  G(KC_C), G(KC_V), KC_BSPC, RM_TOGG,
                 ALT_TAB, KC_TAB,  KC_UP,   KC_ENT,  KC_MUTE,
                 KC_LSFT, KC_LEFT, KC_DOWN, KC_RGHT, MS_BTN3,
-                KC_LCTL, KC_LOPT, KC_LCMD, MO(MAC_FN)
+                KC_LCTL, KC_LOPT, QK_LOCK, MO(MAC_FN)
             ),
 
 /*  MAC_FN
@@ -277,70 +277,70 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 const ledmap_color_t PROGMEM ledmap[][MATRIX_ROWS][MATRIX_COLS] = {
     [NUM] = LAYOUT(
-                YELLOW, ORANGE, RED,    CYAN,   BLACK,
-                YELLOW, ORANGE, RED,    CYAN,   BLACK,
-                YELLOW, ORANGE, RED,    VIOLET, BLACK,
-                VIOLET, VIOLET, VIOLET, VIOLET
+                VIOLET, TRNS, TRNS, TRNS, BLACK,
+                TRNS,   TRNS, TRNS, TRNS, BLACK,
+                TRNS,   TRNS, TRNS, TRNS, BLACK,
+                TRNS,  RED,  TRNS, TRNS
             ),
     [WIN] = LAYOUT(
-                YELLOW, ORANGE, RED,    CYAN,   BLACK,
-                YELLOW, ORANGE, RED,    CYAN,   BLACK,
-                YELLOW, ORANGE, RED,    VIOLET, BLACK,
-                VIOLET, VIOLET, VIOLET, WHITE
+                VIOLET, TRNS,   TRNS,     TRNS,   BLACK,
+                TRNS,   TRNS,   TRNS,     VIOLET, BLACK,
+                TRNS,   TRNS,   TRNS,     VIOLET, BLACK,
+                RED,    WHITE,  ORANGE,   ORANGE
             ),
     [WIN_FN] = LAYOUT(
-                YELLOW, ORANGE, RED,    CYAN,   BLACK,
-                YELLOW, ORANGE, RED,    CYAN,   BLACK,
-                YELLOW, ORANGE, RED,    VIOLET, BLACK,
-                VIOLET, VIOLET, VIOLET, WHITE
+                CYAN, CYAN, CYAN, CYAN, BLACK,
+                CYAN, CYAN, CYAN, CYAN, BLACK,
+                CYAN, CYAN, CYAN, CYAN, BLACK,
+                CYAN, CYAN, CYAN, CYAN
             ),
     [MAC] = LAYOUT(
-                YELLOW, ORANGE, RED,    CYAN,   BLACK,
-                YELLOW, ORANGE, RED,    CYAN,   BLACK,
-                YELLOW, ORANGE, RED,    VIOLET, BLACK,
-                VIOLET, VIOLET, VIOLET, WHITE
+                CYAN,    CYAN,    CYAN,    MAGENTA,   BLACK,
+                CYAN,    CYAN,    CYAN,    MAGENTA,   BLACK,
+                CYAN,    CYAN,    CYAN,    MAGENTA,   BLACK,
+                MAGENTA, MAGENTA, MAGENTA, MAGENTA
             ),
     [MAC_FN] = LAYOUT(
-                YELLOW, ORANGE, RED,    CYAN,   BLACK,
-                YELLOW, ORANGE, RED,    CYAN,   BLACK,
-                YELLOW, ORANGE, RED,    VIOLET, BLACK,
-                VIOLET, VIOLET, VIOLET, WHITE
+                RED, RED, RED, RED,   BLACK,
+                RED, RED, RED, RED,   BLACK,
+                RED, RED, RED, RED,   BLACK,
+                RED, RED, RED, RED
             ),
     [MEDIA] = LAYOUT(
-                YELLOW, ORANGE, RED,    CYAN,   BLACK,
-                YELLOW, ORANGE, RED,    CYAN,   BLACK,
-                YELLOW, ORANGE, RED,    VIOLET, BLACK,
-                VIOLET, VIOLET, VIOLET, VIOLET
+                ORANGE, ORANGE, ORANGE, ORANGE, BLACK,
+                ORANGE, ORANGE, ORANGE, ORANGE, BLACK,
+                ORANGE, ORANGE, ORANGE, ORANGE, BLACK,
+                ORANGE, ORANGE, ORANGE, ORANGE
             ),
     [BROWSER] = LAYOUT(
-                YELLOW, ORANGE, RED,    CYAN,   BLACK,
-                YELLOW, ORANGE, RED,    CYAN,   BLACK,
-                YELLOW, ORANGE, RED,    VIOLET, BLACK,
-                VIOLET, VIOLET, VIOLET, VIOLET
+                TRNS,   TRNS,   TRNS,   TRNS,   TRNS,
+                TRNS,   TRNS,   TRNS,   TRNS,   TRNS,
+                TRNS,   TRNS,   TRNS,   TRNS,   TRNS,
+                TRNS,   TRNS,   TRNS,   TRNS
             ),
     [DISCORD] = LAYOUT(
-                YELLOW, ORANGE, RED,    CYAN,   BLACK,
-                YELLOW, ORANGE, RED,    CYAN,   BLACK,
-                YELLOW, ORANGE, RED,    VIOLET, BLACK,
-                VIOLET, VIOLET, VIOLET, VIOLET
+                TRNS,   TRNS,   TRNS,   TRNS,   TRNS,
+                TRNS,   TRNS,   TRNS,   TRNS,   TRNS,
+                TRNS,   TRNS,   TRNS,   TRNS,   TRNS,
+                WHITE,  WHITE,  WHITE,  WHITE
             ),
     [MOUSE] = LAYOUT(
-                YELLOW, ORANGE, RED,    CYAN,   BLACK,
-                YELLOW, ORANGE, RED,    CYAN,   BLACK,
-                YELLOW, ORANGE, RED,    VIOLET, BLACK,
-                VIOLET, VIOLET, VIOLET, WHITE
+                VIOLET, VIOLET, VIOLET, VIOLET, TRNS,
+                VIOLET, VIOLET, VIOLET, VIOLET, TRNS,
+                VIOLET, VIOLET, VIOLET, VIOLET, TRNS,
+                VIOLET, VIOLET, VIOLET, VIOLET
             ),
     [GAME] = LAYOUT(
-                TRNS,   TRNS,   TRNS,   TRNS,   TRNS,
-                TRNS,   TRNS,   TRNS,   TRNS,   TRNS,
-                TRNS,   TRNS,   TRNS,   TRNS,   TRNS,
-                TRNS,   TRNS,   TRNS,   WHITE
+        VIOLET, GREEN,   ORANGE, CYAN,   TRNS,
+                MAGENTA, GREEN,  ORANGE, CYAN, TRNS,
+                MAGENTA, GREEN,  ORANGE, CYAN, TRNS,
+                MAGENTA, GREEN,  ORANGE, CYAN
             ),
     [GAME_FN] = LAYOUT(
                 TRNS,   TRNS,   TRNS,   TRNS,   TRNS,
                 TRNS,   TRNS,   TRNS,   TRNS,   TRNS,
                 TRNS,   TRNS,   TRNS,   TRNS,   TRNS,
-                TRNS,   TRNS,   TRNS,   WHITE
+                TRNS,   TRNS,   TRNS,   TRNS
             ),
     [LIGHT] = LAYOUT(
                 TRNS,   TRNS,   TRNS,   TRNS,   TRNS,
@@ -370,7 +370,7 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
 
 #ifdef OLED_ENABLE
     bool oled_task_user(void) {
-        oled_write_ln(layers[get_highest_layer(layer_state)], false);
+        // oled_write_ln(layers[get_highest_layer(layer_state)], false);
         render_oled_layers();
 
         return true;

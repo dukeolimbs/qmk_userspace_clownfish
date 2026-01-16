@@ -16,6 +16,7 @@ enum clownfish_keycodes {
     VENV,
     CLANGD,
     DBL_0,
+    KC_KEYLOCK,
     CLOWNFISH_RANGE
 };
 #ifdef RGB_MATRIX_ENABLE

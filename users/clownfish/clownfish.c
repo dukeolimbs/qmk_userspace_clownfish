@@ -73,6 +73,24 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 SEND_STRING("00");
             }
             return false;
+        case KC_KEYLOCK:
+            if (record->event.pressed) {
+                // Trigger QK_LOCK by simulating a keypress
+                // We need to process QK_LOCK through the action system
+                // Create a synthetic keyrecord for QK_LOCK
+                keyrecord_t lock_record = *record;
+                // Process QK_LOCK action
+                action_t action = action_for_keycode(QK_LOCK);
+                if (action.kind.id != ACTION_NO) {
+                    // Process press
+                    lock_record.event.pressed = true;
+                    process_action(&lock_record, action);
+                    // Process release immediately after
+                    lock_record.event.pressed = false;
+                    process_action(&lock_record, action);
+                }
+            }
+            return false;
     }
 #ifdef RGB_MATRIX_ENABLE
     return process_record_rgb(keycode, record);
